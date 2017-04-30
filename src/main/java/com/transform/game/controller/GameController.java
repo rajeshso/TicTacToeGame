@@ -26,17 +26,17 @@ public class GameController {
     }
     @RequestMapping(value = "/placeMark", method = RequestMethod.POST)
     public ResponseEntity<GameStatus> placeMark(@RequestBody PlaceMark placeMark) {
-        logger.debug("startGame called with "+ placeMark);
+        logger.debug("placeMark called with "+ placeMark);
         return new ResponseEntity<GameStatus>(new GameStatus(), HttpStatus.OK);
     }
     @RequestMapping(value = "/completeGame", method = RequestMethod.POST)
     public ResponseEntity<GameStatus> completeGame(@RequestBody CompleteGame completeGame) {
-        logger.debug("startGame called with "+ completeGame);
+        logger.debug("completeGame called with "+ completeGame);
         return new ResponseEntity<GameStatus>(new GameStatus(), HttpStatus.OK);
     }
     @RequestMapping(value = "/gameStatus", method = RequestMethod.POST)
     public ResponseEntity<GameStatus> gameStatus(@RequestBody GameStatusRequest gameStatusRequest) {
-        logger.debug("startGame called with "+ gameStatusRequest);
+        logger.debug("gameStatus called with "+ gameStatusRequest);
         return new ResponseEntity<GameStatus>(new GameStatus(), HttpStatus.OK);
     }
 }

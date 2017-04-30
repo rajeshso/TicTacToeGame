@@ -96,4 +96,12 @@ public class TicTacToe extends Game {
         }
         return isFull;
     }
+    
+    public void changePlayer() {
+        if (currentPlayerMark == PLAYER_MARK) {
+            currentPlayerMark = COUNTER_PLAYER_MARK;
+        } else {
+            currentPlayerMark = PLAYER_MARK;
+        }
+    }
 }
