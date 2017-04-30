@@ -84,4 +84,16 @@ public class TicTacToe extends Game {
     public boolean placeMark(int row, int col, String player) {
         return false;
     }
+    
+    public boolean isBoardFull() {
+        boolean isFull = true;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (grid[i][j] == EMPTY_MARK) {
+                    isFull = false;
+                }
+            }
+        }
+        return isFull;
+    }
 }

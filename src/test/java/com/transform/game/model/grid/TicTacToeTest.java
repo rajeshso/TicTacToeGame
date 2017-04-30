@@ -55,10 +55,17 @@ public class TicTacToeTest {
 		TicTacToe gc = new TicTacToe("A", "B");
 		assertThat(gc.checkForWin()).isFalse();
 	}
+	
+	@Test
+	public final void testIfBoardIsFullBeforeStart() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.isBoardFull()).isFalse();
+	}
 
-	@Ignore
-	public final void testGetGameStatus() {
-		fail("Not yet implemented"); // TODO
+	@Test
+	public final void testGetGameStatusBeforeStart() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.getGameStatus()).isEqualTo("INITIALIZED");
 	}
 
 	@Ignore
