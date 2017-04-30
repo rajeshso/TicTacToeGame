@@ -50,9 +50,10 @@ public class TicTacToeTest {
 		fail("Not yet implemented"); // TODO
 	}
 
-	@Ignore
-	public final void testGetWinner() {
-		fail("Not yet implemented"); // TODO
+	@Test
+	public final void testGetWinnerBeforeStart() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.checkForWin()).isFalse();
 	}
 
 	@Ignore

@@ -46,7 +46,33 @@ public class TicTacToe extends Game {
 
     @Override
     public boolean checkForWin() {
+        return (checkRowsForWin() || checkColumnsForWin() || checkDiagonalsForWin());
+    }
+
+    private boolean checkRowsForWin() {
+        for (int i = 0; i < 3; i++) {
+            if (checkRowCol(grid[i][0], grid[i][1], grid[i][2]) == true) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    private boolean checkColumnsForWin() {
+        for (int i = 0; i < 3; i++) {
+            if (checkRowCol(grid[0][i], grid[1][i], grid[2][i]) == true) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkDiagonalsForWin() {
+        return ((checkRowCol(grid[0][0], grid[1][1], grid[2][2]) == true) || (checkRowCol(grid[0][2], grid[1][1], grid[2][0]) == true));
+    }
+    
+    private boolean checkRowCol(char c1, char c2, char c3) {
+        return ((c1 != EMPTY_MARK) && (c1 == c2) && (c2 == c3));
     }
 
     @Override
