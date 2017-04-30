@@ -3,6 +3,8 @@ package com.transform.game.model.grid;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.transform.game.model.InvalidPlaceException;
+
 /**
  * Created by Rajesh on 29-Apr-17.
  */
@@ -37,7 +39,7 @@ public abstract class Game {
     }
 
     // Places a mark at the cell specified by row and col with the mark of the given player.
-    public abstract boolean placeMark(int row, int col, String player);
+    public abstract boolean placeMark(int row, int col, String player) throws InvalidPlaceException;
 
     public static enum GAME_OPERATION {
         INITIALIZED,

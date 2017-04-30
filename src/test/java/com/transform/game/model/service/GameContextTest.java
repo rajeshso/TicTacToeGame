@@ -28,7 +28,7 @@ public class GameContextTest {
  public void testIfGameContextHandlesNonPlayersInTournaments() {
 	 try {
 		GameContext gc = new GameContext("1", new TicTacToe("NonPlayerA","B"));
-		fail("An Exception is not expected here");
+		fail("An Exception is expected here");
 	} catch (InvalidStartException e) {
 		assertThat(e).hasMessage("NonPlayerA is not valid");
 	}
@@ -37,7 +37,7 @@ public class GameContextTest {
  public void testIfGameContextHandlesNonCounterPlayersInTournaments() {
 	 try {
 		GameContext gc = new GameContext("1", new TicTacToe("A","NonPlayerB"));
-		fail("An Exception is not expected here");
+		fail("An Exception is expected here");
 	} catch (InvalidStartException e) {
 		assertThat(e).hasMessage("NonPlayerB is not valid");
 	}

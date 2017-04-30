@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.transform.game.model.InvalidPlaceException;
 import com.transform.game.model.InvalidRemoveException;
 import com.transform.game.model.InvalidStartException;
 import com.transform.game.model.grid.TicTacToe;
@@ -68,9 +69,51 @@ public class TicTacToeTest {
 		assertThat(gc.getGameStatus()).isEqualTo("INITIALIZED");
 	}
 
-	@Ignore
-	public final void testContainsPlayer() {
-		fail("Not yet implemented"); // TODO
+	@Test
+	public final void testValidatePlaceMarkForIncorrectColumn() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.getGameStatus()).isEqualTo("INITIALIZED");
+		try {
+			gc.placeMark(10, 0, "A");
+			fail("This is unexpected");
+		}catch(InvalidPlaceException e) {
+			assertThat(e).hasMessage("The row and col positions are incorrect");
+		}
+	}
+	@Test
+	public final void testValidatePlaceMarkForIncorrectRow() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.getGameStatus()).isEqualTo("INITIALIZED");
+		try {
+			gc.placeMark(0, 10, "A");
+			fail("This is unexpected");
+		}catch(InvalidPlaceException e) {
+			assertThat(e).hasMessage("The row and col positions are incorrect");
+		}
+	}
+	
+	@Test
+	public final void testValidatePlaceMarkForIncorrectPlayer() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.getGameStatus()).isEqualTo("INITIALIZED");
+		try {
+			gc.placeMark(0, 1, "C");
+			fail("This is unexpected");
+		}catch(InvalidPlaceException e) {
+			assertThat(e).hasMessage("Player C is not in this game");
+		}
+	}
+	
+	@Test
+	public final void testValidatePlaceMarkForIncorrectPlayerTurn() {
+		TicTacToe gc = new TicTacToe("A", "B");
+		assertThat(gc.getGameStatus()).isEqualTo("INITIALIZED");
+		try {
+			gc.placeMark(0, 1, "B");
+			fail("This is unexpected");
+		}catch(InvalidPlaceException e) {
+			assertThat(e).hasMessage("Player B is not in this turn");
+		}
 	}
 
 	@Ignore

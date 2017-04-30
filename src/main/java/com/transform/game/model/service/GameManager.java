@@ -8,7 +8,8 @@ import com.transform.game.model.grid.TicTacToe;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by Rajesh on 29-Apr-17.
+ * This is the GameManager Service Model. The API can be used by a command line or a GUI or a Rest API
+ * This is a Singleton.
  */
 public final class GameManager {
     private static final GameManager instance = new GameManager();
@@ -17,18 +18,49 @@ public final class GameManager {
     public static GameManager getInstance() {
         return instance;
     }
+    /**
+     * Check if a unique Game ID exists
+     * 
+     * @param id
+     * @return true if exists
+     */
     public boolean containsId(String id) {
         return games.containsKey(id);
     }
+    /**
+     * Use this method to start a game.
+     * Remember that only the player can start and remove the game.
+     * The players should be from the configured set of players
+     * 
+     * @param id unique id
+     * @param player registered player
+     * @param counterPlayer a registered player
+     * @throws InvalidStartException If the input is incorrect
+     */
     public void createTicTacToeGame(String id, String player, String counterPlayer) throws InvalidStartException {
     	if (containsId(id)) throw new InvalidStartException("The id "+id+" is duplicated");
         Game game = new TicTacToe(player, counterPlayer);
         GameContext gameContext = new GameContext(id, game);
         games.put(id, gameContext);
     }
+    
+    /**
+     * Every game has a context.
+     * It is a container to hold the players and the state of the game 
+     * 
+     * @param id
+     * @return
+     */
     public GameContext getGameContext(String id) {
         return games.get(id);
     }
+    
+    /**
+     * The player can remove the game from the tournament.
+     * @param id
+     * @param player
+     * @throws InvalidRemoveException
+     */
     public void removeGame(String id, String player) throws InvalidRemoveException {
         if (!containsId(id)) 
         	throw new InvalidRemoveException("id "+id + " does not exist");

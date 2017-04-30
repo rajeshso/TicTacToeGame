@@ -2,6 +2,8 @@ package com.transform.game.model.grid;
 
 import java.util.AbstractMap;
 
+import com.transform.game.model.InvalidPlaceException;
+
 /**
  * Created by Rajesh on 27-Apr-17.
  */
@@ -81,7 +83,11 @@ public class TicTacToe extends Game {
     }
 
     @Override
-    public boolean placeMark(int row, int col, String player) {
+    public boolean placeMark(int row, int col, String player) throws InvalidPlaceException {
+        //Make sure the right player marks
+        if (!players.containsKey(player)) throw new InvalidPlaceException("Player "+ player +" is not in this game");
+        if (!whosTurn().equals(player)) throw new InvalidPlaceException("Player "+ player +" is not in this turn");
+        if ( (row<0 || row >3 || col < 0 || col > 3)) throw new InvalidPlaceException("The row and col positions are incorrect");
         return false;
     }
     
@@ -97,7 +103,7 @@ public class TicTacToe extends Game {
         return isFull;
     }
     
-    public void changePlayer() {
+    private void changePlayer() {
         if (currentPlayerMark == PLAYER_MARK) {
             currentPlayerMark = COUNTER_PLAYER_MARK;
         } else {
