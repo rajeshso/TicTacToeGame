@@ -1,5 +1,6 @@
 package com.transform.game.model.service;
 
+import com.transform.game.model.InvalidPlaceException;
 import com.transform.game.model.InvalidRemoveException;
 import com.transform.game.model.InvalidStartException;
 import com.transform.game.model.grid.Game;
@@ -54,6 +55,21 @@ public final class GameManager {
     public GameContext getGameContext(String id) {
         return games.get(id);
     }
+    /**
+     * Place the player's mark
+     * 
+     * @param id
+     * @param row
+     * @param col
+     * @param player
+     * @return
+     * @throws InvalidPlaceException
+     */
+    public boolean placeMark(String id, int row, int col, String player) throws InvalidPlaceException {
+    	GameContext gc = getGameContext(id);
+    	Game game = gc.getGame();
+    	return game.placeMark(row, col, player);
+    }
     
     /**
      * The player can remove the game from the tournament.
@@ -68,5 +84,19 @@ public final class GameManager {
         if(!gameContext.getGame().containsPlayer(player)) 
         	throw new InvalidRemoveException("player "+player+" is not eligible to remove");;
        	games.remove(id);
+    }
+    
+    public String getGameStatus(String id) throws Exception {
+    	if (!containsId(id)) 
+    		throw new Exception("Incorrect Game ID");
+    	GameContext gameContext = getGameContext(id);
+    	StringBuilder builder = new StringBuilder();
+    	builder.append("\nGame Status = " + gameContext.getGameStatus());
+    	builder.append("\nGame Board = "+ gameContext.getCurrentBoardImage());
+    	builder.append("\nPlayer = "+ gameContext.getPlayer());
+    	builder.append("\nCounter Player = "+ gameContext.getCounterPlayer());
+    	builder.append("\nWhos next turn = "+ gameContext.whosNextTurn());
+    	builder.append("\nWinner = "+ gameContext.getWinner());
+    	return builder.toString();
     }
 }
