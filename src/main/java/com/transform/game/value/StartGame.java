@@ -22,4 +22,13 @@ public class StartGame {
 	public void setCounterPlayer(String counterPlayer) {
 		this.counterPlayer = counterPlayer;
 	}
+
+	@Override
+	public String toString() {
+		return "StartGame{" +
+				"id='" + id + '\'' +
+				", player='" + player + '\'' +
+				", counterPlayer='" + counterPlayer + '\'' +
+				'}';
+	}
 }

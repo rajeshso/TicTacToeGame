@@ -2,7 +2,7 @@ package com.transform.game.value;
 
 public class PlaceMark { 
 	private String gameId;
-	private char player;
+	private String player;
 	private int row;
 	private int col;
 	public String getGameId() {
@@ -11,10 +11,10 @@ public class PlaceMark {
 	public void setGameId(String gameId) {
 		this.gameId = gameId;
 	}
-	public char getPlayer() {
+	public String getPlayer() {
 		return player;
 	}
-	public void setPlayer(char player) {
+	public void setPlayer(String player) {
 		this.player = player;
 	}
 	public int getRow() {
@@ -28,5 +28,15 @@ public class PlaceMark {
 	}
 	public void setCol(int col) {
 		this.col = col;
+	}
+
+	@Override
+	public String toString() {
+		return "PlaceMark{" +
+				"gameId='" + gameId + '\'' +
+				", player='" + player + '\'' +
+				", row=" + row +
+				", col=" + col +
+				'}';
 	}
 }
