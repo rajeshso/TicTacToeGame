@@ -30,10 +30,7 @@ public class TicTacToeTest {
 		assertThat(lines[5]).isEqualTo(VALID_ALL_EMPTY_CELLS);
 	}
 
-	@Ignore
-	public final void testCheckForWin() {
-		fail("Not yet implemented"); // TODO
-	}
+
 
 	@Test
 	public final void testWhosTurnOnStart() {
@@ -41,15 +38,6 @@ public class TicTacToeTest {
 		assertThat(gc.whosTurn()).isEqualTo("A");
 	}
 
-	@Ignore
-	public final void testPlaceMark() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	public final void testTicTacToe() {
-		fail("Not yet implemented"); // TODO
-	}
 
 	@Test
 	public final void testGetWinnerBeforeStart() {
@@ -114,16 +102,6 @@ public class TicTacToeTest {
 		}catch(InvalidPlaceException e) {
 			assertThat(e).hasMessage("Player B is not in this turn");
 		}
-	}
-
-	@Ignore
-	public final void testGetPlayer() {
-		fail("Not yet implemented"); // TODO
-	}
-
-	@Ignore
-	public final void testGetCounterPlayer() {
-		fail("Not yet implemented"); // TODO
 	}
 
 }
