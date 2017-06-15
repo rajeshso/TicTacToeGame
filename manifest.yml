@@ -3,3 +3,6 @@ applications:
   memory: 180M
   instances: 1
   path: build/libs/TicTacToe-0.1.0.jar
+  routes:
+  - route: TicTacToe.eu-gb.mybluemix.net
+  stack: cflinuxfs2
